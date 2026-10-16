@@ -26,7 +26,7 @@ export function initFiltering(elements, indexes) {
             state[action.dataset.field] = '';
         }
 
-        // диапазон суммы: собираем totalFrom/totalTo в массив [от, до] для правила arrayAsRange
+        // диапазон суммы:  totalFrom/totalTo в массив [от, до] для правила arrayAsRange
         const filter = {
             ...state,
             total: [parseFloat(state.totalFrom), parseFloat(state.totalTo)]
