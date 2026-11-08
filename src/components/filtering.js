@@ -1,7 +1,7 @@
-import {createComparison, defaultRules} from "../lib/compare.js";
+// import {createComparison, defaultRules} from "../lib/compare.js";
 
 // @todo: #4.3 — настроить компаратор
-const compare = createComparison(defaultRules);
+// const compare = createComparison(defaultRules);
 
 export function initFiltering(elements) {
   const updateIndexes = (elements, indexes) => {

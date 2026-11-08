@@ -57,6 +57,9 @@ async function render(action) {
   //     result = applyFiltering(result, state, action);
   //     result = applySorting(result, state, action);
   //     result = applyPagination(result, state, action);
+  query = applySorting(query, state, action);
+  query = applySearching(query, state, action);
+  query = applyFiltering(query, state, action);
   query = applyPagination(query, state, action); // обновляем query
   const { total, items } = await API.getRecords(query);
   updatePagination(total, query);
@@ -66,9 +69,7 @@ async function render(action) {
 // @todo: инициализация
 const applySearching = initSearching("search");
 
-const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.elements, {
-  searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
-});
+const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.elements);
 
 // const applyFiltering = initFiltering(sampleTable.filter.elements, {    // передаём элементы фильтра
 //     searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
