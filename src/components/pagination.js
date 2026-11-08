@@ -1,4 +1,4 @@
-import {getPages} from "../lib/utils.js";
+import { getPages } from "../lib/utils.js";
 
 export const initPagination = (
   { pages, fromRow, toRow, totalRows },
@@ -16,12 +16,21 @@ export const initPagination = (
       let page = state.page;
 
       // переносим код, который делали под @todo: #2.6
-      if (action) switch (action.name) {
-        case 'prev': page = Math.max(1, page - 1); break;            // переход на предыдущую страницу
-        case 'next': page = Math.min(pageCount, page + 1); break;    // переход на следующую страницу
-        case 'first': page = 1; break;                                // переход на первую страницу
-        case 'last': page = pageCount; break;                         // переход на последнюю страницу
-    }
+      if (action)
+        switch (action.name) {
+          case "prev":
+            page = Math.max(1, page - 1);
+            break; // переход на предыдущую страницу
+          case "next":
+            page = Math.min(pageCount, page + 1);
+            break; // переход на следующую страницу
+          case "first":
+            page = 1;
+            break; // переход на первую страницу
+          case "last":
+            page = pageCount;
+            break; // переход на последнюю страницу
+        }
 
       return Object.assign({}, query, {
         // добавим параметры к query, но не изменяем исходный объект
@@ -46,8 +55,8 @@ export const initPagination = (
 
       // // @todo: #2.5 — обновить статус пагинации
       fromRow.textContent = (page - 1) * limit + 1;
-      toRow.textContent = Math.min(page * limit, data.length);
-      totalRows.textContent = data.length;
+      toRow.textContent = Math.min(page * limit, total);
+      totalRows.textContent = total;
     };
 
     return {

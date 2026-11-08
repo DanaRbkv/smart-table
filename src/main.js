@@ -66,6 +66,10 @@ async function render(action) {
 // @todo: инициализация
 const applySearching = initSearching("search");
 
+const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.elements, {
+  searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
+});
+
 // const applyFiltering = initFiltering(sampleTable.filter.elements, {    // передаём элементы фильтра
 //     searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
 // });
@@ -94,6 +98,10 @@ appRoot.appendChild(sampleTable.container);
 
 async function init() {
   const indexes = await API.getIndexes();
+
+  updateIndexes(sampleTable.filter.elements, {
+        searchBySeller: indexes.sellers
+    });
 }
 //render();
 init().then(render);
